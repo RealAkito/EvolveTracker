@@ -1,0 +1,40 @@
+{% extends 'skeleton.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>Mail Manager - Login</title>
+{% endblock %}
+
+{% block body %}
+    {# Make a HTML5 login container #}
+    <login>
+        <div id="login" class="box">
+            {# If they're a life-long failure #}
+            {% if form.errors %}
+                    <span style="color:red">Your username and/or password did not match. Please try again.</span>
+            {% endif %}
+
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p>Your account doesn't have access to this page. To proceed,
+                    please login with an account that has access.</p>
+                {% else %}
+                    <p>Please login to see this page.</p>
+                {% endif %}
+            {% endif %}
+
+            {# Our login form #}
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div>{{ form.username.label_tag }}</div>
+                {{ form.username }}<br />
+                <div>{{ form.password.label_tag }}</div>
+                {{ form.password }}<br />
+
+                <div style="padding-top: 10px"><input type="submit" value="Login" /></div>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+        </div>
+    </login>
+{% endblock %}
+

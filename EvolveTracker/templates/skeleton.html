@@ -1,0 +1,41 @@
+{# The point of this document is to have all pages inherit from it. #}
+{# This inheritance makes all pages equal in how their HTML is formatted. #}
+{# there are basic 'head' and 'body' blocks for most of the content as well #}
+{# as 'scripts' and 'title' blocks. #}
+{# This file has been in every django project I ever worked on and it doesn't change much. #}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<meta charset='utf-8'>
+	<link rel="shortcut icon" href="/static/img/favicon.ico" />
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<link rel='stylesheet' href="{% static 'css/normalize.css' %}">
+	<link rel='stylesheet' href="{% static 'css/skeleton.css' %}">
+	<link rel='stylesheet' href="{% static 'css/base.css' %}">
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+	<div class='row'>
+		<div class='large-12 large-centered columns'>
+			 {% if user.is_authenticated %}
+			<span style="float:right;">Server time: {{ time }} | Logged in as {{ user.username }} | <a href="/logout/">Logout</a>
+				{% if user.is_staff %}
+				| <a href="/admin/">Admin</a>
+				{% endif %}
+			</span>
+			 {% endif %}
+			<h1 class='logo'><a href="/">Herp</a></h1>
+		</div>
+	</div>
+{% block body %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+</body>
+</html>
+
