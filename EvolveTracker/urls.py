@@ -14,20 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls import url
-from django.contrib.auth.views import login as auth_login
-from django.contrib.auth.views import logout as auth_logout
+from django.contrib.auth import views as auth_views
 from EvolveTracker.apps.bugs import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login/$', auth_login, {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', auth_logout, {'next_page': '/'}, name='logout'),
-    # rest of our views
-    url(r'^$', views.index),
-    # The user can go to the ticket via the database id
-    path('ticket/<int:id>', views.ticketid),
-    # or the ticket id.
-    path('ticket/<str:uuid>', views.ticketuuid),
+    url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
+
+    path('doc/', include(('EvolveTracker.apps.docs.urls', 'docs'), namespace='docs')),
+    # our main application
+    path('ticket/', include(('EvolveTracker.apps.bugs.urls', 'bugs'), namespace='bugs')),
+    # our index
+    path('', views.index, name='index'),
 ]

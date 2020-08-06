@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}{% block header_title %}Evolution X - {{ parts.title }}{% endblock %}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet"  href="{% static "css/docs.css" %}" />
+{% endblock %}
+
+{% block body %}
+<div class="content">
+	<div class="app-box box">
+		{% autoescape off %}
+			{{ parts.html_title }}
+			{{ parts.html_subtitle }}
+			{{ parts.fragment }}
+		{% endautoescape %}
+	</div>
+</div>
+{% endblock %}

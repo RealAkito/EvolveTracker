@@ -1,0 +1,68 @@
+{% extends 'skeleton.html' %}
+{% load static %}
+
+{% block page_title %}{% block header_title %}Evolution X - New Ticket{% endblock %}{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<article>
+	<div class="box" id="newticket">
+		<h2>New Ticket</h2>
+		<form method="post" data-action="{% url 'bugs:newticket' %}">
+			{% csrf_token %}
+			<div class="row">
+				<div class="six columns">
+					{{ form.title.label_tag }}
+					{{ form.title }}
+				</div>
+				<div class="six columns">
+					{{ form.device.label_tag }}
+					{{ form.device }}
+				</div>				
+			</div>
+
+			<div class="row">
+				<div class="six columns">
+					{{ form.status.label_tag }}
+					{{ form.status }}
+				</div>
+				<div class="six columns">
+					{{ form.resolution.label_tag }}
+					{{ form.resolution }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="six columns">
+					{{ form.issuetype.label_tag }}
+					{{ form.issuetype }}
+				</div>
+				<div class="six columns">
+					{{ form.severity.label_tag }}
+					{{ form.severity }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="six columns">
+					{{ form.username.label_tag }}
+					{{ form.username }}
+				</div>
+				<div class="six columns">
+					{{ form.rooted.label_tag }}
+					{{ form.rooted }}
+				</div>
+			</div>
+
+			<div class="row">
+				{{ form.text.label_tag }}
+				{{ form.text }}
+			</div>
+			<input type="submit" value="Submit" />
+		</form>
+
+	</div>
+</article>
+{% endblock %}

@@ -1,14 +1,13 @@
 {% extends 'skeleton.html' %}
-{% load staticfiles %}
+{% load static %}
 
-{% block head %}
-    <title>Mail Manager - Login</title>
-{% endblock %}
+{% block page_title %}{% block header_title %}Evolution X - Login{% endblock %}{% endblock %}
 
 {% block body %}
     {# Make a HTML5 login container #}
     <login>
         <div id="login" class="box">
+            <h2>Login</h2>
             {# If they're a life-long failure #}
             {% if form.errors %}
                     <span style="color:red">Your username and/or password did not match. Please try again.</span>
@@ -26,11 +25,8 @@
             {# Our login form #}
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
-                <div>{{ form.username.label_tag }}</div>
-                {{ form.username }}<br />
-                <div>{{ form.password.label_tag }}</div>
-                {{ form.password }}<br />
-
+                <div id="loginfield">{{ form.username.label_tag }} {{ form.username }}</div>
+                <div id="loginfield">{{ form.password.label_tag }} {{ form.password }}</div>
                 <div style="padding-top: 10px"><input type="submit" value="Login" /></div>
                 <input type="hidden" name="next" value="{{ next }}" />
             </form>

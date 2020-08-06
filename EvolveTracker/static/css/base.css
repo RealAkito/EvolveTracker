@@ -17,19 +17,14 @@ body {
     background-image: url('/static/img/bg.png');
     background-repeat: repeat;
     font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
+    font-size: 12pt;
     text-shadow: 0 1px 4px rgba(150, 150, 150, 0.5);
     color: #4d4d4f;
     text-align: center;
 }
 
-.margin-sides-5 {
-  margin-left:5px;
-  margin-right:5px;
-}
-
 a {
-    color: #0d9ce0;
+    color: #0060FF;
     text-decoration: none;
 }
 
@@ -45,47 +40,65 @@ header {
 }
 
 article {
-    margin: 0px 4%;
+	margin: 0px 2% 2% 2%;
+	text-align: left;
+}
+
+h2 {
+	border-bottom: 1px solid #dfdfdf;
+}
+
+#issuebox {
+	padding: 1%;
+}
+
+.navbar {
+	float: right;
+	padding-right: 20px;
 }
 
 .logo {
-    color: #0D9CE0;
+    color: #0060FF;
     font-size: 50px;
     font-weight: 100;
     float: left;
     padding-left: 50px;
 }
+
+.logo img {
+	width: 12%;
+	vertical-align: middle;
+	padding-right: 20px;
+}
+
 .logo a:hover {
     text-decoration: none;
-    color: #0D9CE0;
+    color: #0060FF;
 }
 
-.title {
-    float: left;
+#newticket {
+    padding: 3%;
+    margin: 0px 8%;
 }
 
-menu ul {
-    font-size: 14px;
-    display: inline;
-    float: right;
-    list-style: none;
-    margin-top: 15px;
+#newticket th {
+    text-align: right;
 }
 
-menu ul li{
-    float: left;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: 8px;
+#newticket th {
+    text-align: left;
 }
 
-menu ul#nav li a {
-    color: #4d4d4f;
+#newticket input[type="text"] {
+    width: 100%;
+}
+#newticket form {
+    margin-bottom: 0;
 }
 
 #login {
     margin: 0% 35% 0% 35%;
-    padding: 15px 0px 15px 0px;
+    padding: 15px 0px 0px 0px;
 }
 
 #login form {
@@ -94,50 +107,6 @@ menu ul#nav li a {
 
 #login label {
     text-align: left;
-}
-
-#nav .home {
-    background: url('/static/img/Home.svg') no-repeat;
-    background-size: 16px 16px;
-    text-indent: 4px;
-}
-
-#nav .logout {
-    background: url('/static/img/Logout.svg') no-repeat;
-    background-size: 16px 16px;
-    text-indent: 3px;
-}
-
-#nav .login {
-    background: url('/static/img/Login.svg') no-repeat;
-    background-size: 16px 16px;
-    text-indent: 5px;
-}
-
-#nav .account {
-    background: url('/static/img/Gear.svg') no-repeat;
-    background-size: 16px 16px;
-    text-indent: 4px;
-}
-
-#nav .staff {
-    background: url('/static/img/Gandalf.svg') no-repeat;
-    background-size: 20px 20px;
-    text-indent: 5px;
-}
-
-#addcertlink {
-    background: url('/static/img/plus.svg') no-repeat;
-    background-size: 16px 16px;
-    text-indent: 20px;
-}
-
-#users_spacer {
-  margin-right: 2em;
-}
-
-#bottomrows {
-  margin-top: 2em;
 }
 
 .list {
@@ -189,15 +158,6 @@ table tr th, table tr td {
   font-size:12px;
 }
 
-#addcert {
-    padding: 0px 3% 20px;
-    margin: 0px 30%;
-}
-
-#addcertform {
-    display: block;
-}
-
 .box {
     background: rgb(255,255,255);
     background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%);
@@ -239,13 +199,92 @@ input.align-left {
 input.align-right {
     float:right;
 }
+
 textarea {
     width: 100%;
-    height: 100px;
+    height: 100%;
 }
-input[type="button"],
-input[type="submit"] {
-    background-color: #216288;
+
+th.sort:after {
+    margin-left: .04em;
+    cursor: pointer;
+}
+
+th.sort.none:after {
+	content: '\2666'
+}
+
+th.sort.asc:after {
+	content: '\2193'
+}
+
+th.sort.desc:after {
+	content: '\2191'
+}
+
+.tktlist {
+    width: 100%;
+}
+
+.tktlist thead {
+    border-bottom: 1px solid #000;
+}
+
+.tktlist th, td {
+    font-size: 13pt !important;
+    border-bottom: 1px solid #4d4d4f !important;
+}
+
+.ticketfield {
+    text-align: left;
+    vertical-align: top;
+    background-color: #D3D7CF;
+    border: 1px solid #CCC;
+    padding-left: 0.3%;
+}
+
+.ticketlabel {
+    text-align: right;
+    overflow: hidden;
+    width: 8%;
+}
+
+.ticketinfo {
+    margin-right: 2%;
+}
+
+.ticketinfo table {
+    width: 100%;
+    border-collapse: unset !important;
+    border-spacing: 4px !important;
+}
+
+.ticketinfo th, td {
+    border-bottom: unset !important;
+    font-size: 12pt !important;
+}
+
+.comment {
+    padding: 1%;
+    margin: 2%;
+}
+
+.commenttext {
+    border-top: 1px solid #CCC;
+    padding-top: 1%
+}
+
+#loginfield {
+	display: grid;
+}
+
+input[name="newtkt"] {
+	float: right;
+	margin: 1% 1% 0 0;
+}
+
+input[type="button"], input[type="submit"] {
+    background-color: #3380FF;
     border: 1px solid #17445E;
     display: inline-block;
     cursor: pointer;
@@ -256,8 +295,8 @@ input[type="submit"] {
 }
 input[type="button"]:hover:enabled,
 input[type="submit"]:hover:enabled {
-    background: linear-gradient(to bottom, #0D9CE0 5%, #0D9CE0 100%);
-    background-color: #0D9CE0;
+    background: linear-gradient(to bottom, #0060FF 5%, #0060FF 100%);
+    background-color: #0060FF;
 }
 input[type="button"]:disabled,
 input[type="submit"]:disabled {

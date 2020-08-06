@@ -1,0 +1,58 @@
+{% extends 'skeleton.html' %}
+{% load static %}
+
+{% block page_title %}{% block header_title %}Evolution X - View Ticket{% endblock %}{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<article>
+	<div class="ticketinfo">
+	<table cellpadding="5">
+		<tbody>
+			<tr>
+				<td class="ticketlabel">Ticket UUID:</td>
+				<td class="ticketfield" colspan="3">{{ issue.issueuuid }}</td>
+			</tr>
+			<tr>
+				<td class="ticketlabel">Title:</td>
+				<td class="ticketfield" colspan="3">{{ issue.title }}</td>
+			</tr>
+			<tr>
+				<td class="ticketlabel">Status:</td>
+				<td class="ticketfield">{{ issue.get_status_display }}</td>
+				<td class="ticketlabel">Type:</td>
+				<td class="ticketfield">{{ issue.get_issuetype_display }}</td>
+			</tr>
+			<tr>
+				<td class="ticketlabel">Severity:</td>
+				<td class="ticketfield">{{ issue.get_severity_display }}</td>
+				<td class="ticketlabel">Resolution:</td>
+				<td class="ticketfield">{% if issue.resolution %}{{ issue.get_resolution_display }}{% endif %}</td>
+			</tr>
+			<tr>
+				<td class="ticketlabel">Creation Date:</td>
+				<td class="ticketfield">{{ issue.date }}</td>
+				<td class="ticketlabel">Modified Date:</td>
+				<td class="ticketfield">{{ issue.updated }}</td>
+			</tr>
+			<tr>
+				<td class="ticketlabel">Device:</td>
+				<td class="ticketfield">{{ issue.device }}</td>
+				<td class="ticketlabel">Rooted:</td>
+				<td class="ticketfield">{{ issue.rooted|yesno }}</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<div class="comments">
+		{% for c in comments %}
+			<div class="box comment" id="comment_{{ c.pk }}">
+				<b>{{ c.name }}</b> - <small>{{ c.date }}</small>
+				<div class="commenttext">{{ c.text|linebreaks }}</div>
+			</div>
+		{% endfor %}
+	</div>
+</article>
+{% endblock %}

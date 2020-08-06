@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'EvolveTracker.apps.bugs',
+    'EvolveTracker.apps.docs',
 ]
 
 MIDDLEWARE = [
@@ -94,10 +96,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValida# login url
-LOGIN_URL = "/login/"
-# Post-login redirection
-LOGIN_REDIRECT_URL = "/"tor',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
@@ -122,6 +121,7 @@ USE_TZ = True
 LOGIN_URL = "/login/"
 # Post-login redirection
 LOGIN_REDIRECT_URL = "/"
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

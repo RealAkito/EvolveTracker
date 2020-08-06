@@ -1,14 +1,46 @@
 {% extends 'skeleton.html' %}
-{% load staticfiles %}
+{% load static %}
 
-{% block title %}Overview - Mail Manager{% endblock %}
+{% block page_title %}{% block header_title %}Evolution X - All Tickets{% endblock %}{% endblock %}
 
 {% block head %}
-
 {% endblock %}
 
 {% block body %}
-{% endblock %}
-
-{% block scripts %}
+<article>
+	<input type="button" name="newtkt" value="New Ticket" onclick='window.location.href="{% url "bugs:newticket" %}";'/>
+	<div id="issuebox" class="box">
+	<h2>Issues</h2>
+	{% if issues %}
+		<table class="sortable tktlist" data-column-types="" data-init-sort="0" cellspacing="0" cellpadding="2">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Created</th>
+					<th>Updated</th>
+					<th>Type</th>
+					<th>Status</th>
+					<th>Device</th>
+					<th>Title</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for i in issues %}
+					<tr {% if i.GetColor %}style="background-color:{{ i.GetColor }};"{% endif %}/>
+						<td valign="top"><a data-href="{{ i.get_absolute_url }}" href="">{{ i.GetShortUUID }}</a></td>
+						<td valign="top">{{ i.date }}</td>
+						<td valign="top">{{ i.updated }}</td>
+						<td valign="top">{{ i.get_issuetype_display }}</td>
+						<td valign="top">{{ i.get_status_display }}</td>
+						<td valign="top">{{ i.device }}</td>
+						<td valign="top">{{ i.title }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>No issues! (yay!)</p>
+	{% endif %}
+	</div>
+</article>
 {% endblock %}
