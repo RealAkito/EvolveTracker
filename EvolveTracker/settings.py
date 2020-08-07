@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'EvolveTracker.apps.bugs',
     'EvolveTracker.apps.docs',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,11 @@ LOGIN_URL = "/login/"
 # Post-login redirection
 LOGIN_REDIRECT_URL = "/"
 
+LOGOUT_URL = "/logout/"
+LOGOUT_REDIRECT_URL = "/"
+
+# Use math capchas since they will be the most advanced.
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

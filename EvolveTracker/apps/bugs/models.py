@@ -3,8 +3,8 @@ from django.urls import reverse
 import uuid
 
 STATUS_CHOICES = (
-	(0, "Closed"),
-	(1, "Open")
+	(0, "Open"),
+	(1, "Closed")
 )
 
 RESOLUTION_CHOICES = (
@@ -54,6 +54,8 @@ class Issue(models.Model):
 	device = models.CharField(max_length=64, verbose_name=u"Device")
 	# The user's name
 	username = models.CharField(max_length=64, verbose_name=u"Username")
+	# Whether this issue allows comments
+	locked = models.BooleanField(default=False, verbose_name=u"Locked")
 
 	def get_absolute_url(self):
 		return reverse("bugs:ticketuuid", kwargs={"uuid": self.issueuuid})
@@ -64,7 +66,7 @@ class Issue(models.Model):
 	# Get the color that should be displayed
 	def GetColor(self):
 		# if the bug is closed, mark it green.
-		if self.status == 0:
+		if self.status == 1:
 			return "#C7FFCC"
 		else:
 			# if the bug is a feature, mark it blue

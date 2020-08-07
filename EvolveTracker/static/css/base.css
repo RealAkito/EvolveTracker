@@ -13,6 +13,11 @@
 }
 
 /* Main styling for the entire site */
+html {
+    background-image: url('/static/img/bg.png');
+    background-repeat: repeat;
+}
+
 body {
     background-image: url('/static/img/bg.png');
     background-repeat: repeat;
@@ -46,6 +51,15 @@ article {
 
 h2 {
 	border-bottom: 1px solid #dfdfdf;
+}
+
+h4 {
+	border-bottom: 1px solid #dfdfdf;
+}
+
+.setstatus {
+    padding: 1%;
+    margin: 2%;
 }
 
 #issuebox {
@@ -92,6 +106,11 @@ h2 {
 #newticket input[type="text"] {
     width: 100%;
 }
+
+#newticket input[id="id_capcha_1"] {
+    width: 43%;
+}
+
 #newticket form {
     margin-bottom: 0;
 }
@@ -272,6 +291,11 @@ th.sort.desc:after {
 .commenttext {
     border-top: 1px solid #CCC;
     padding-top: 1%
+}
+
+.newcomment {
+    padding: 1%;
+    margin: 2%;
 }
 
 #loginfield {

@@ -20,6 +20,8 @@
 					<th>Updated</th>
 					<th>Type</th>
 					<th>Status</th>
+					<th>Severity</th>
+					<th>Resolution</th>
 					<th>Device</th>
 					<th>Title</th>
 				</tr>
@@ -32,6 +34,8 @@
 						<td valign="top">{{ i.updated }}</td>
 						<td valign="top">{{ i.get_issuetype_display }}</td>
 						<td valign="top">{{ i.get_status_display }}</td>
+						<td valign="top">{{ i.get_severity_display }}</td>
+						<td valign="top">{% if i.resolution %}{{ i.get_resolution_display }}{% endif %}</td>
 						<td valign="top">{{ i.device }}</td>
 						<td valign="top">{{ i.title }}</td>
 					</tr>

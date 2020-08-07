@@ -46,6 +46,7 @@
 		</tbody>
 	</table>
 	</div>
+
 	<div class="comments">
 		{% for c in comments %}
 			<div class="box comment" id="comment_{{ c.pk }}">
@@ -53,6 +54,66 @@
 				<div class="commenttext">{{ c.text|linebreaks }}</div>
 			</div>
 		{% endfor %}
+		{% if user.is_authenticated or not issue.locked %}
+		<div class="newcomment box">
+			<form method="post" data-action="{% url 'bugs:ticketuuid' issue.issueuuid %}">
+				{% csrf_token %}
+				
+				{% if not user.is_authenticated %}
+					<div class="row">
+						<div class="six columns">
+							{{ updateform.username.label_tag }}
+							{{ updateform.username }}
+						</div>
+						<div class="six columns">
+							{{ updateform.capcha.label_tag }}
+							{{ updateform.capcha }}
+						</div>
+					</div>
+				{% else %}
+					<div class="row">
+						<div class="six columns">
+							{{ updateform.resolution.label_tag }}
+							{{ updateform.resolution }}
+						</div>
+						<div class="six columns">
+							{{ updateform.severity.label_tag }}
+							{{ updateform.severity }}
+						</div>				
+					</div>
+
+					<div class="row">
+						<div class="six columns">
+							{{ updateform.issuetype.label_tag }}
+							{{ updateform.issuetype }}
+						</div>
+						<div class="six columns">
+							{{ updateform.status.label_tag }}
+							{{ updateform.status }}
+						</div>				
+					</div>
+
+					<div class="row">
+						<div class="six columns">
+						{{ updateform.locked.label_tag }}
+						{{ updateform.locked }}
+						</div>
+					</div>
+				{% endif %}
+
+				<div class="row">
+					{{ updateform.text.label_tag }}
+					{{ updateform.text }}
+				</div>
+				<div class="row">
+					<input type="submit" value="Submit" name="submit" />
+					{% if user.is_authenticated %}
+						<input type="submit" value="Submit & Update" name="update" />
+					{% endif %}
+				</div>
+			</form>
+		</div>
+		{% endif %}
 	</div>
 </article>
 {% endblock %}

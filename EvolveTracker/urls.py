@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 
+    url(r'^captcha/', include('captcha.urls')),
+
     path('doc/', include(('EvolveTracker.apps.docs.urls', 'docs'), namespace='docs')),
     # our main application
     path('ticket/', include(('EvolveTracker.apps.bugs.urls', 'bugs'), namespace='bugs')),
