@@ -24,14 +24,14 @@
 			<div class='large-12 large-centered columns'>
 				{% if user.is_authenticated %}
 					<span class="navbar">Server time: {{ time }} | Logged in as {{ user.username }} | <a href="/logout/">Logout</a>
-						{% if user.is_staff %}
+						{% if user.is_superuser %}
 						| <a href="/admin/">Admin</a>
 						{% endif %}
 					</span>
 				{% else %}
 					<span class="navbar">Server time: {{ time }} | <a data-href="/login/" href="">Login</a></span>
 				{% endif %}
-				<h1 class='logo'><a data-href="/" href=""><img src="{% static 'img/logo_transparent.png' %}" alt="" />{% block header_title %}{% endblock %}</a></h1>
+				<h1 class='logo'><a data-href="/" href=""><img src="{% static 'img/logo_transparent_dark.png' %}" alt="" />{% block header_title %}{% endblock %}</a></h1>
 			</div>
 		</div>
 	</header>
