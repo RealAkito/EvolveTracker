@@ -33,7 +33,7 @@ SEVERITY_CHOICES = (
 class Issue(models.Model):
 	# by default django already has `pk` or `id` for database IDs we can use
 	# Our issues are based on sha256sums
-	issueuuid = models.CharField(max_length=64, verbose_name=u"Ticket UUID", default=uuid.uuid1().hex, blank=True)
+	issueuuid = models.CharField(max_length=64, verbose_name=u"Ticket UUID", default=uuid.uuid4().hex, blank=True)
 	# The time our ticket was created
 	date = models.DateTimeField(verbose_name=u"Creation Date", auto_now=True)
 	# The time our ticket was modified
