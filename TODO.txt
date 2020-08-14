@@ -1,0 +1,30 @@
+Okay I have too many features to try and remember to add so here we go with a new TODO.txt
+
+##########################
+# Minimum Viable Product #
+##########################
+
+- Handle multiple device bug trackers
+- Handle user registration
+- Better ways to deal with spam/nefarious crap than just captcha
+
+#############
+     Bot
+#############
+
+- Bot registration with each group (for announcements)
+- IPC between bot <==> Django
+- Bot must announce changes to ticket (including state changes)
+- Bug report announcements should be device specific and therefore
+  only announce in device-specific groups.
+- Add command to list bugs (maybe with pagination?) from telegram
+- Support short hashes like git
+
+##########################
+# Future features to add #
+##########################
+
+- When a device is dropped from official repo,
+  close all existing bugs for that device automatically
+  as `Won't-Fix` and leave an automated comment saying
+  device support has been dropped.
