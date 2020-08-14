@@ -1,3 +1,5 @@
 Django
 Pillow
 django-simple-captcha
+python-telegram-bot
+PTable

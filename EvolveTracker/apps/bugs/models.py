@@ -57,6 +57,9 @@ class Issue(models.Model):
 	# Whether this issue allows comments
 	locked = models.BooleanField(default=False, verbose_name=u"Locked")
 
+	def __str__(self):
+	 return f"{self.username}: {self.title}"
+
 	def get_absolute_url(self):
 		return reverse("bugs:ticketuuid", kwargs={"uuid": self.issueuuid})
 
@@ -99,4 +102,7 @@ class Comment(models.Model):
 	name = models.CharField(max_length=64, verbose_name=u"Username")
 	# The comment's content
 	text = models.TextField(verbose_name=u"Comment")
+
+	def __str__(self):
+		return f"{self.name}: {self.text[:64]}"
 

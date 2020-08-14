@@ -5,11 +5,60 @@ from django.forms import ModelForm
 from django import forms
 from datetime import datetime
 from captcha.fields import CaptchaField
+import json, requests
 from EvolveTracker.apps.bugs.models import Issue, Comment
 
+class EvolutionX(object):
+	# Get the officially supported devices
+	def __init__(self):
+		print("Getting officially supported devices...")
+		r = requests.get("https://raw.githubusercontent.com/Evolution-X-Devices/official_devices/master/devices.json")
+		self.json = json.loads(r.content)
+		print(f"{len(self.json)} officially supported devices loaded!")
+
+	# Get the device specific json file (for telegram username and such)
+	def GetDeviceJson(self, codename):
+		r = requests.get(f"https://raw.githubusercontent.com/Evolution-X-Devices/official_devices/master/builds/{codename}.json")
+		return json.loads(r.content)
+
+	def GetDevices(self):
+		return self.json
+
+	def GetDeviceList(self):
+		l = []
+		for i in self.json:
+			l.append(f"{i['brand']} {i['name']} ({i['codename']})")
+		return l
+
+	def GetDeviceListTuple(self):
+		l = []
+		num = 0
+		for i in self.json:
+			l.append((num, f"{i['brand']} {i['name']} ({i['codename']})"))
+			num += 1
+		return tuple(l)
+	
+	def GetCodenames(self):
+		l = []
+		for i in self.json:
+			l.append(i.codename)
+		return l
+
 class TicketForm(ModelForm):
+	_evox = EvolutionX()
 	text = forms.CharField(widget=forms.Textarea(attrs={'rows': 15, 'cols': 90, 'class': 'textarea'}))
+	device = forms.ChoiceField(choices=_evox.GetDeviceListTuple())
 	capcha = CaptchaField()
+
+	def __init__(self, data=None, files=None, auto_id='id_%s', prefix=None, initial=None, label_suffix=None, empty_permitted=False, instance=None, use_required_attribute=None, renderer=None):
+		super().__init__(data=data, files=files, auto_id=auto_id, prefix=prefix, initial=initial, label_suffix=label_suffix, empty_permitted=empty_permitted, instance=instance, use_required_attribute=use_required_attribute, renderer=renderer)
+		self.fields['device'].choices = self._evox.GetDeviceListTuple()
+
+	# change the data to use something else.
+	def clean_device(self):
+		data = self.cleaned_data['device']
+		return self._evox.GetDeviceListTuple()[int(data)][1]
+
 	class Meta:
 		model = Issue
 		fields = "__all__"
