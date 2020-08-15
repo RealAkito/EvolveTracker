@@ -3,3 +3,5 @@ Pillow
 django-simple-captcha
 python-telegram-bot
 PTable
+twiwsted
+klein
