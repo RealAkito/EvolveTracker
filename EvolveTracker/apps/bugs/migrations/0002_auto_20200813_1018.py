@@ -13,6 +13,9 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='issue',
             name='issueuuid',
-            field=models.CharField(blank=True, default='f5a59a10a4e44ec2ae9c2f0ffe6d343f', max_length=64, verbose_name='Ticket UUID'),
+            field=models.CharField(blank=True,
+                                   default='f5a59a10a4e44ec2ae9c2f0ffe6d343f',
+                                   max_length=64,
+                                   verbose_name='Ticket UUID'),
         ),
     ]

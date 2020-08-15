@@ -21,14 +21,16 @@ from EvolveTracker.apps.bugs import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    url(r'^login/$',
+        auth_views.LoginView.as_view(template_name='login.html'),
+        name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
-
     url(r'^captcha/', include('captcha.urls')),
-
-    path('doc/', include(('EvolveTracker.apps.docs.urls', 'docs'), namespace='docs')),
+    path('doc/',
+         include(('EvolveTracker.apps.docs.urls', 'docs'), namespace='docs')),
     # our main application
-    path('ticket/', include(('EvolveTracker.apps.bugs.urls', 'bugs'), namespace='bugs')),
+    path('ticket/',
+         include(('EvolveTracker.apps.bugs.urls', 'bugs'), namespace='bugs')),
     # our index
     path('', views.index, name='index'),
 ]

@@ -17,6 +17,7 @@ from django.urls import path, include, re_path
 from EvolveTracker.apps.docs import views as doc_views
 
 urlpatterns = [
-    path('', doc_views.page, dict(path=''), name = 'index'),
-    re_path(r'^(?P<path>[a-zA-Z0-9_\-]+(/[a-zA-Z0-9_\-]+)*)/$', doc_views.page),
+    path('', doc_views.page, dict(path=''), name='index'),
+    re_path(r'^(?P<path>[a-zA-Z0-9_\-]+(/[a-zA-Z0-9_\-]+)*)/$',
+            doc_views.page),
 ]
